@@ -1,0 +1,137 @@
+---
+layout: base.njk
+pagination:
+  data: collections.casesSorted
+  size: 1
+  alias: case
+permalink: "/cases/{{ case.fileSlug }}/"
+---
+
+<article class="case-page">
+  <div class="case-page-hero">
+    <div class="container">
+      <div class="case-page-tags">
+        {% for cat in case.data.categories %}
+          <span class="tag tag-{{ cat }}">
+            {% if cat == "missing" %}Missing Persons
+            {% elif cat == "institutional" %}Institutional Failure
+            {% elif cat == "unresolved" %}Unresolved
+            {% elif cat == "pattern" %}Pattern Case
+            {% elif cat == "deep" %}Deep Dive
+            {% elif cat == "thelie" %}The Lie
+            {% endif %}
+          </span>
+        {% endfor %}
+      </div>
+      <h1 class="case-page-title">{{ case.data.title }}</h1>
+      <p class="case-page-meta">{{ case.data.categories[0] | upper }} · {{ case.data.period }}</p>
+    </div>
+  </div>
+
+  <div class="case-page-content">
+    <div class="container">
+      <div class="case-page-body">
+        {% if case.data.excerpt %}
+          <div class="case-page-excerpt">{{ case.data.excerpt }}</div>
+        {% endif %}
+        
+        {% if case.templateContent %}
+          {{ case.templateContent | safe }}
+        {% else %}
+          <p style="color: var(--text3); font-style: italic;">Full case details coming soon.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</article>
+
+<style>
+.case-page-hero {
+  padding: 8rem 0 3rem;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(to bottom, rgba(91,138,238,.03), transparent);
+}
+.case-page-tags {
+  display: flex;
+  gap: .6rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+.case-page-title {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -.02em;
+  margin-bottom: 1rem;
+  max-width: 900px;
+}
+.case-page-meta {
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text3);
+}
+.case-page-content {
+  padding: 4rem 0;
+}
+.case-page-body {
+  max-width: 720px;
+  margin: 0 auto;
+  font-family: var(--body);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--text2);
+}
+.case-page-excerpt {
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.case-page-body h2 {
+  font-family: var(--serif);
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 2.5rem 0 1rem;
+  color: var(--text);
+}
+.case-page-body h3 {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 2rem 0 .8rem;
+  color: var(--text);
+}
+.case-page-body p {
+  margin-bottom: 1.5rem;
+}
+.case-page-body ul, .case-page-body ol {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+}
+.case-page-body li {
+  margin-bottom: .6rem;
+}
+.case-page-body a {
+  color: var(--blue);
+  text-decoration: underline;
+  text-decoration-color: rgba(91,138,238,.3);
+  transition: all .2s;
+}
+.case-page-body a:hover {
+  color: var(--gold);
+  text-decoration-color: var(--gold);
+}
+.case-page-body blockquote {
+  border-left: 3px solid var(--gold);
+  padding-left: 1.5rem;
+  margin: 2rem 0;
+  font-style: italic;
+  color: var(--text3);
+}
+</style>

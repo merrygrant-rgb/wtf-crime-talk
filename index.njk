@@ -113,7 +113,7 @@ title: Investigative Storytelling
     </div>
     <div class="cases-grid" id="casesGrid">
       {% for case in collections.casesSorted %}
-      <a href="{{ case.data.url or '#' }}" class="case-card" data-category="{{ case.data.categories | join(' ') }}">
+      <a href="/cases/{{ case.fileSlug }}/" class="case-card" data-category="{{ case.data.categories | join(' ') }}">
         <div class="case-tags">
           {% for cat in case.data.categories %}
             <span class="tag tag-{{ cat }}">
