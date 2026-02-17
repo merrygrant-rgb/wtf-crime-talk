@@ -1,0 +1,254 @@
+---
+layout: base.njk
+title: Investigative Storytelling
+---
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Investigative Storytelling</p>
+    <h1 class="hero-hl">
+      <span class="w">Some</span> <span class="w">cases</span> <span class="w">don't</span> <span class="w">go</span> <span class="w">cold.</span><br>
+      <em><span class="w">They</span> <span class="w">go</span> <span class="w">quiet.</span></em>
+    </h1>
+    <p class="hero-sub">Investigative storytelling exploring underreported crimes, systemic failure, and the human cost of silence.</p>
+    <div class="hero-btns">
+      <a href="#youtube" class="btn-p">Watch Latest Episode</a>
+      <a href="#cases" class="btn-s">Explore the Cases</a>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <div class="ticker-item">
+      <span>Investigative Storytelling</span><span class="ticker-dot"></span>
+      <span>Missing Persons</span><span class="ticker-dot"></span>
+      <span>Institutional Failures</span><span class="ticker-dot"></span>
+      <span>Unresolved Cases</span><span class="ticker-dot"></span>
+      <span>Pattern Analysis</span><span class="ticker-dot"></span>
+      <span>Deep Dives</span><span class="ticker-dot"></span>
+      <span>The Lie — Deception & Cover-Up</span><span class="ticker-dot"></span>
+      <span>The Record That Remains</span><span class="ticker-dot"></span>
+    </div>
+    <div class="ticker-item" aria-hidden="true">
+      <span>Investigative Storytelling</span><span class="ticker-dot"></span>
+      <span>Missing Persons</span><span class="ticker-dot"></span>
+      <span>Institutional Failures</span><span class="ticker-dot"></span>
+      <span>Unresolved Cases</span><span class="ticker-dot"></span>
+      <span>Pattern Analysis</span><span class="ticker-dot"></span>
+      <span>Deep Dives</span><span class="ticker-dot"></span>
+      <span>The Lie — Deception & Cover-Up</span><span class="ticker-dot"></span>
+      <span>The Record That Remains</span><span class="ticker-dot"></span>
+    </div>
+  </div>
+</div>
+
+<!-- YOUTUBE — pulls from CMS, shows featured episode -->
+{% set ytEpisodes = collections.featuredYoutube %}
+{% if ytEpisodes.length > 0 %}
+{% set yt = ytEpisodes[0] %}
+<section class="yt-section section" id="youtube">
+  <div class="container">
+    <div class="sec-head fade-up">
+      <p class="sec-label">Latest Episode</p>
+      <h2 class="sec-title">The <em>case everyone missed</em></h2>
+    </div>
+    <div class="yt-grid">
+      <div class="fade-up">
+        <div class="yt-frame">
+          <iframe src="https://www.youtube.com/embed/{{ yt.data.video_id }}"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="fade-up fade-up-d1">
+        <div class="yt-tags">
+          {% for tag in yt.data.tags %}
+            <span class="tag tag-{{ tag }}">
+              {% if tag == "missing" %}Missing Persons
+              {% elif tag == "institutional" %}Institutional Failure
+              {% elif tag == "unresolved" %}Unresolved
+              {% elif tag == "pattern" %}Pattern Case
+              {% elif tag == "deep" %}Deep Dive
+              {% elif tag == "thelie" %}The Lie
+              {% endif %}
+            </span>
+          {% endfor %}
+          {% if yt.data.episode %}<span class="yt-ep">{{ yt.data.episode }}</span>{% endif %}
+        </div>
+        <h3 class="yt-title">{{ yt.data.title }}</h3>
+        <p class="yt-desc">{{ yt.data.desc1 }}</p>
+        {% if yt.data.desc2 %}<p class="yt-desc">{{ yt.data.desc2 }}</p>{% endif %}
+        {% if yt.data.callout_label %}
+        <div class="callout">
+          <p class="callout-lbl">{{ yt.data.callout_label }}</p>
+          <p class="callout-txt">{{ yt.data.callout_text }}</p>
+        </div>
+        {% endif %}
+        <a href="#cases" class="arrow-link">Read the full case breakdown</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- CASES — pulls from CMS, multi-tag filtering -->
+<section class="archive-section section" id="cases">
+  <div class="container">
+    <div class="sec-head fade-up">
+      <p class="sec-label">Case Archive</p>
+      <h2 class="sec-title">The record <em>that remains</em></h2>
+    </div>
+    <div class="tabs">
+      <button class="tab on"  onclick="filterCases('all',this)">All Cases</button>
+      <button class="tab"     onclick="filterCases('missing',this)">Missing Persons</button>
+      <button class="tab"     onclick="filterCases('unresolved',this)">Unresolved</button>
+      <button class="tab"     onclick="filterCases('institutional',this)">Institutional Failures</button>
+      <button class="tab"     onclick="filterCases('pattern',this)">Pattern Cases</button>
+      <button class="tab"     onclick="filterCases('deep',this)">Deep Dives</button>
+      <button class="tab"     onclick="filterCases('thelie',this)">The Lie</button>
+    </div>
+    <div class="cases-grid" id="casesGrid">
+      {% for case in collections.casesSorted %}
+      <a href="{{ case.data.url or '#' }}" class="case-card" data-category="{{ case.data.categories | join(' ') }}">
+        <div class="case-tags">
+          {% for cat in case.data.categories %}
+            <span class="tag tag-{{ cat }}">
+              {% if cat == "missing" %}Missing Persons
+              {% elif cat == "institutional" %}Institutional Failure
+              {% elif cat == "unresolved" %}Unresolved
+              {% elif cat == "pattern" %}Pattern Case
+              {% elif cat == "deep" %}Deep Dive
+              {% elif cat == "thelie" %}The Lie
+              {% endif %}
+            </span>
+          {% endfor %}
+        </div>
+        <h3 class="case-title">{{ case.data.title }}</h3>
+        <p class="case-excerpt">{{ case.data.excerpt }}</p>
+        <div class="case-foot">
+          <span class="case-meta">{{ case.data.categories[0] | upper }} · {{ case.data.period }}</span>
+          <span class="case-arr">→</span>
+        </div>
+      </a>
+      {% else %}
+      <div class="case-card" style="grid-column:1/-1;text-align:center;color:var(--text3);padding:3rem">
+        No cases published yet. Add your first case in the admin panel.
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- PODCAST — pulls from CMS -->
+<section class="pod-section section" id="podcast">
+  <div class="container">
+    <div class="sec-head fade-up">
+      <p class="sec-label">Audio Series</p>
+      <h2 class="sec-title">Listen deeper — <em>extended conversations</em></h2>
+    </div>
+    <div class="pod-grid">
+      {% for ep in collections.podcastSorted | slice(0, 6) %}
+      <a href="{{ ep.data.url or '#' }}" class="pod-card fade-up">
+        <p class="pod-num">{{ ep.data.episode_number }}</p>
+        <h3 class="pod-title">{{ ep.data.title }}</h3>
+        <p class="pod-desc">{{ ep.data.excerpt }}</p>
+      </a>
+      {% else %}
+      <div class="pod-card" style="grid-column:1/-1;color:var(--text3);padding:2rem">
+        No episodes yet. Add your first episode in the admin panel.
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- BLOG — pulls from CMS -->
+<section class="blog-section section" id="blog">
+  <div class="container">
+    <div class="sec-head-row fade-up">
+      <div>
+        <p class="sec-label">Analysis & Commentary</p>
+        <h2 class="sec-title">Deep dives <em>beyond the episode</em></h2>
+      </div>
+    </div>
+    <div class="blog-grid">
+      {% for post in collections.blogSorted | slice(0, 4) %}
+      <a href="{{ post.data.url or post.url }}" class="blog-card fade-up">
+        <p class="blog-date">{{ post.date | date("MMM D, YYYY") }}</p>
+        <h3 class="blog-title">{{ post.data.title }}</h3>
+        <p class="blog-excerpt">{{ post.data.excerpt }}</p>
+        <span class="blog-more">Read Analysis</span>
+      </a>
+      {% else %}
+      <div class="blog-card" style="grid-column:1/-1;color:var(--text3);padding:2rem">
+        No posts yet. Add your first analysis in the admin panel.
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- MERCH — pulls from CMS -->
+<section class="merch-section section" id="merch">
+  <div class="container">
+    <div class="sec-head-row fade-up">
+      <div>
+        <p class="sec-label">The Shop</p>
+        <h2 class="sec-title">Wear the <em>mission</em></h2>
+      </div>
+      <a href="#" class="arrow-link">View all products</a>
+    </div>
+    <div class="merch-grid">
+      {% for product in collections.merchActive | slice(0, 6) %}
+      <a href="{{ product.data.url or '#' }}" class="merch-card fade-up">
+        <div class="merch-img">
+          {% if product.data.badge %}<span class="merch-badge">{{ product.data.badge }}</span>{% endif %}
+          {% if product.data.image %}
+            <img src="{{ product.data.image }}" alt="{{ product.data.title }}" style="width:100%;height:100%;object-fit:cover;">
+          {% else %}
+            <svg class="merch-placeholder" viewBox="0 0 160 200" fill="none"><path d="M30 50L50 30H110L130 50V170H30V50Z" stroke="#e8e4dd" stroke-width="1.5" fill="rgba(232,184,109,0.05)"/><path d="M50 30Q80 45 110 30" stroke="#e8e4dd" stroke-width="1.5" fill="none"/><line x1="40" y1="80" x2="120" y2="80" stroke="#e8b86d" stroke-width="2" stroke-linecap="round"/><line x1="40" y1="95" x2="120" y2="95" stroke="#e8e4dd" stroke-width="1" opacity="0.3"/></svg>
+          {% endif %}
+        </div>
+        <div class="merch-body">
+          <p class="merch-type">{{ product.data.type }}</p>
+          <p class="merch-name">{{ product.data.title }}</p>
+          <p class="merch-tagline">{{ product.data.tagline }}</p>
+          <div class="merch-price-row">
+            <span class="merch-price">${{ product.data.price }}</span>
+            <button class="merch-btn">Shop Now</button>
+          </div>
+        </div>
+      </a>
+      {% else %}
+      <div class="merch-card" style="grid-column:1/-1;color:var(--text3);padding:2rem">
+        No products yet. Add your first item in the admin panel.
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="nl-section section" id="newsletter">
+  <div class="container">
+    <div class="nl-grid">
+      <div class="fade-up">
+        <p class="sec-label">Stay Informed</p>
+        <h2 class="nl-title">New cases.<br>New episodes.<br><em>No noise.</em></h2>
+        <p class="nl-sub">Get notified when we publish a new investigation. No spam. Just the work.</p>
+      </div>
+      <div class="fade-up fade-up-d1">
+        <div class="nl-form">
+          <input class="nl-input" type="text" placeholder="Your name">
+          <input class="nl-input" type="email" placeholder="Your email address">
+          <button class="nl-submit">Stay Informed →</button>
+          <p class="nl-note">No spam. Unsubscribe anytime.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

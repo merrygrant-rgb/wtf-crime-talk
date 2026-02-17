@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if title %}{{ title }} — {% endif %}WTF Crime Talk</title>
+  <meta name="description" content="Investigative storytelling exploring underreported crimes, systemic failure, and the human cost of silence.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,600&family=DM+Sans:wght@300;400;500;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">WTF Crime <span>Talk</span></a>
+  <ul class="nav-links">
+    <li><a href="/#cases">Cases</a></li>
+    <li><a href="/#blog">Analysis</a></li>
+    <li><a href="/#podcast">Podcast</a></li>
+    <li><a href="/#merch">Shop</a></li>
+    <li><a href="/#newsletter" class="nav-cta">Stay Informed</a></li>
+  </ul>
+  <button class="nav-hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+{{ content | safe }}
+
+<footer>
+  <div class="footer-main">
+    <div class="footer-col">
+      <span class="footer-logo">WTF Crime <em>Talk</em></span>
+      <p class="footer-tagline">Investigative storytelling committed to clarity, dignity, and accountability — examining not just what happened, but why it was allowed to happen.</p>
+      <div class="footer-socials">
+        <a href="#" class="footer-social">YT</a>
+        <a href="#" class="footer-social">IG</a>
+        <a href="#" class="footer-social">TK</a>
+        <a href="#" class="footer-social">FB</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Cases</div>
+      <ul class="footer-links">
+        <li><a href="/#cases">Missing Persons</a></li>
+        <li><a href="/#cases">Unresolved</a></li>
+        <li><a href="/#cases">Institutional Failures</a></li>
+        <li><a href="/#cases">Pattern Cases</a></li>
+        <li><a href="/#cases">Deep Dives</a></li>
+        <li><a href="/#cases">The Lie</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Content</div>
+      <ul class="footer-links">
+        <li><a href="/#youtube">Latest Episode</a></li>
+        <li><a href="/#podcast">Podcast</a></li>
+        <li><a href="/#blog">Analysis</a></li>
+        <li><a href="/#merch">Shop</a></li>
+        <li><a href="/#newsletter">Newsletter</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">About</div>
+      <ul class="footer-links">
+        <li><a href="#">Our Mission</a></li>
+        <li><a href="#">Ethics & Standards</a></li>
+        <li><a href="#">Community Guidelines</a></li>
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 WTF Crime Talk. All rights reserved.</span>
+    <ul class="footer-bottom-links">
+      <li><a href="#">Privacy</a></li>
+      <li><a href="#">Terms</a></li>
+      <li><a href="#">Corrections</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+  // Fade-up scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Hero word reveal
+  document.querySelectorAll('.hero-hl .w').forEach((w, i) => {
+    setTimeout(() => w.classList.add('on'), 600 + i * 110);
+  });
+
+  // Case filtering — supports multiple categories
+  window.filterCases = function(cat, btn) {
+    document.querySelectorAll('.tab').forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+    document.querySelectorAll('.case-card').forEach(card => {
+      const cats = (card.dataset.category || '').split(' ');
+      card.style.display = (cat === 'all' || cats.includes(cat)) ? 'block' : 'none';
+    });
+  };
+
+  // Mobile nav
+  const hamburger = document.querySelector('.nav-hamburger');
+  const navLinks  = document.querySelector('.nav-links');
+  if (hamburger) hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"], a[href^="/#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href').replace('/', '');
+      if (id.length > 1) {
+        const t = document.querySelector(id);
+        if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+      }
+    });
+  });
+</script>
+</body>
+</html>

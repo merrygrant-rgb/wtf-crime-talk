@@ -1,0 +1,112 @@
+backend:
+  name: github
+  repo: YOUR_GITHUB_USERNAME/wtf-crime-talk
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+publish_mode: editorial_workflow
+
+collections:
+
+  # ── CASES ──────────────────────────────────────────────
+  - name: "cases"
+    label: "📂 Cases"
+    folder: "content/cases"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - label: "Categories"
+        name: "categories"
+        widget: "select"
+        multiple: true
+        options:
+          - { label: "Missing Persons",              value: "missing" }
+          - { label: "Institutional Failure",         value: "institutional" }
+          - { label: "Unresolved",                    value: "unresolved" }
+          - { label: "Pattern Case",                  value: "pattern" }
+          - { label: "Deep Dive",                     value: "deep" }
+          - { label: "The Lie — Deception & Cover-Up", value: "thelie" }
+      - { label: "Excerpt", name: "excerpt", widget: "text" }
+      - { label: "Year / Period", name: "period", widget: "string", hint: "e.g. 2019 or Ongoing" }
+      - { label: "Full Story URL", name: "url", widget: "string", required: false, hint: "Leave blank if no separate page yet" }
+      - { label: "Full Story (optional)", name: "body", widget: "markdown", required: false }
+
+  # ── YOUTUBE ────────────────────────────────────────────
+  - name: "youtube"
+    label: "🎬 YouTube Episode"
+    folder: "content/youtube"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Episode Title", name: "title", widget: "string" }
+      - { label: "YouTube Video ID", name: "video_id", widget: "string", hint: "From youtube.com/watch?v=XXXXXXXXXX — copy only the XXXXXXXXXX part" }
+      - { label: "Season & Episode", name: "episode", widget: "string", hint: "e.g. Season 1 · Ep. 2" }
+      - label: "Tags"
+        name: "tags"
+        widget: "select"
+        multiple: true
+        options:
+          - { label: "Missing Persons",              value: "missing" }
+          - { label: "Institutional Failure",         value: "institutional" }
+          - { label: "Unresolved",                    value: "unresolved" }
+          - { label: "Pattern Case",                  value: "pattern" }
+          - { label: "Deep Dive",                     value: "deep" }
+          - { label: "The Lie — Deception & Cover-Up", value: "thelie" }
+      - { label: "Description (paragraph 1)", name: "desc1", widget: "text" }
+      - { label: "Description (paragraph 2)", name: "desc2", widget: "text", required: false }
+      - { label: "Callout Label", name: "callout_label", widget: "string", hint: "e.g. Where the System Failed" }
+      - { label: "Callout Text", name: "callout_text", widget: "text" }
+      - { label: "Featured", name: "featured", widget: "boolean", default: true, hint: "Show this as the featured episode on the homepage" }
+
+  # ── PODCAST ────────────────────────────────────────────
+  - name: "podcast"
+    label: "🎙️ Podcast Episodes"
+    folder: "content/podcast"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Episode Title", name: "title", widget: "string" }
+      - { label: "Episode Number", name: "episode_number", widget: "string", hint: "e.g. Episode 04" }
+      - { label: "Description", name: "excerpt", widget: "text" }
+      - { label: "Listen URL", name: "url", widget: "string", required: false, hint: "Link to Spotify, Apple Podcasts, etc." }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+
+  # ── BLOG / ANALYSIS ────────────────────────────────────
+  - name: "blog"
+    label: "📝 Blog / Analysis"
+    folder: "content/blog"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Excerpt", name: "excerpt", widget: "text" }
+      - { label: "Full Article URL", name: "url", widget: "string", required: false }
+      - { label: "Full Article (optional)", name: "body", widget: "markdown", required: false }
+
+  # ── MERCH ──────────────────────────────────────────────
+  - name: "merch"
+    label: "🛍️ Merch"
+    folder: "content/merch"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Product Name", name: "title", widget: "string" }
+      - { label: "Product Type", name: "type", widget: "select", options: ["Tee", "Hoodie", "Print", "Mug", "Tote Bag", "Sticker Pack", "Hat", "Other"] }
+      - { label: "Tagline", name: "tagline", widget: "string", hint: "Short description shown under the name" }
+      - { label: "Price", name: "price", widget: "string", hint: "e.g. 32" }
+      - { label: "Shopify URL", name: "url", widget: "string", hint: "Your Shopify product URL" }
+      - { label: "Product Image", name: "image", widget: "image", required: false }
+      - label: "Badge"
+        name: "badge"
+        widget: "select"
+        required: false
+        options:
+          - { label: "None", value: "" }
+          - { label: "Best Seller", value: "Best Seller" }
+          - { label: "New", value: "New" }
+          - { label: "Limited", value: "Limited" }
+      - { label: "Active / Show on site", name: "active", widget: "boolean", default: true }
