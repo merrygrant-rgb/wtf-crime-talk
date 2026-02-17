@@ -29,7 +29,8 @@ collections:
           - { label: "Deep Dive",                     value: "deep" }
           - { label: "The Lie — Deception & Cover-Up", value: "thelie" }
       - { label: "Featured Image", name: "image", widget: "image", required: false, hint: "Photo of the person or case-related image" }
-      - { label: "Image Caption", name: "image_caption", widget: "string", required: false, hint: "e.g. 'Photo of Jane Doe, last seen 2019'" }
+      - { label: "Photo Credit", name: "photo_credit", widget: "string", required: false, hint: "e.g. FBI, Cleveland Police Department, Public Domain - REQUIRED if uploading image" }
+      - { label: "Image Caption", name: "image_caption", widget: "string", required: false, hint: "e.g. 'Last seen March 24, 2013' or context about the photo" }
       - { label: "Excerpt", name: "excerpt", widget: "text" }
       - { label: "Year / Period", name: "period", widget: "string", hint: "e.g. 2019 or Ongoing" }
       - { label: "Full Story URL", name: "url", widget: "string", required: false, hint: "Leave blank if no separate page yet" }
