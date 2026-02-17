@@ -80,8 +80,19 @@
     </ul>
   </div>
 </footer>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
 <script>
+
+if (window.netlifyIdentity) {
+  window.netlifyIdentity.on("init", user => {
+    if (!user) {
+      window.netlifyIdentity.on("login", () => {
+        document.location.href = "/admin/";
+      });
+    }
+  });
+}
   // Fade-up scroll animations
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
