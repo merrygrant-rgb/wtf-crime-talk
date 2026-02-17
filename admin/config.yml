@@ -1,8 +1,6 @@
 backend:
-  name: github
-  repo: YOUR_GITHUB_USERNAME/wtf-crime-talk
+  name: git-gateway
   branch: main
-
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
