@@ -30,6 +30,15 @@ permalink: "/cases/{{ case.fileSlug }}/"
 
   <div class="case-page-content">
     <div class="container">
+      {% if case.data.image %}
+      <div class="case-page-image">
+        <img src="{{ case.data.image }}" alt="{{ case.data.title }}">
+        {% if case.data.image_caption %}
+        <p class="case-page-image-caption">{{ case.data.image_caption }}</p>
+        {% endif %}
+      </div>
+      {% endif %}
+      
       <div class="case-page-body">
         {% if case.data.excerpt %}
           <div class="case-page-excerpt">{{ case.data.excerpt }}</div>
@@ -75,6 +84,23 @@ permalink: "/cases/{{ case.fileSlug }}/"
 }
 .case-page-content {
   padding: 4rem 0;
+}
+.case-page-image {
+  max-width: 600px;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+.case-page-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+}
+.case-page-image-caption {
+  font-size: .85rem;
+  color: var(--text3);
+  margin-top: .8rem;
+  font-style: italic;
 }
 .case-page-body {
   max-width: 720px;
