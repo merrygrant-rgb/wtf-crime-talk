@@ -74,6 +74,8 @@ title: Investigative Storytelling
               {% elif tag == "pattern" %}Pattern Case
               {% elif tag == "deep" %}Deep Dive
               {% elif tag == "thelie" %}The Lie
+              {% elif tag == "vanished" %}Vanished
+              {% elif tag == "wrongful" %}Wrongful Conviction
               {% endif %}
             </span>
           {% endfor %}
@@ -110,6 +112,8 @@ title: Investigative Storytelling
       <button class="tab"     onclick="filterCases('pattern',this)">Pattern Cases</button>
       <button class="tab"     onclick="filterCases('deep',this)">Deep Dives</button>
       <button class="tab"     onclick="filterCases('thelie',this)">The Lie</button>
+      <button class="tab"     onclick="filterCases('vanished',this)">Vanished</button>
+      <button class="tab"     onclick="filterCases('wrongful',this)">Wrongful Conviction</button>
     </div>
     <div class="cases-grid" id="casesGrid">
       {% for case in collections.casesSorted %}
@@ -123,6 +127,8 @@ title: Investigative Storytelling
               {% elif cat == "pattern" %}Pattern Case
               {% elif cat == "deep" %}Deep Dive
               {% elif cat == "thelie" %}The Lie
+              {% elif cat == "vanished" %}Vanished
+              {% elif cat == "wrongful" %}Wrongful Conviction
               {% endif %}
             </span>
           {% endfor %}
