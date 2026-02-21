@@ -347,6 +347,8 @@ nav {
 .tag-institutional{ color: var(--gold);   border: 1px solid rgba(232,184,109,.3); }
 .tag-pattern      { color: var(--purple); border: 1px solid rgba(155,126,189,.3); }
 .tag-deep         { color: var(--green);  border: 1px solid rgba(74,140,111,.3); }
+.tag-vanished     { color: #6ba3d4;       border: 1px solid rgba(107,163,212,.3); }
+.tag-wrongful     { color: #d97f4a;       border: 1px solid rgba(217,127,74,.3); }
 
 /* FADE UP ANIMATION */
 .fade-up { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
