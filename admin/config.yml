@@ -28,6 +28,8 @@ collections:
           - { label: "Pattern Case",                  value: "pattern" }
           - { label: "Deep Dive",                     value: "deep" }
           - { label: "The Lie — Deception & Cover-Up", value: "thelie" }
+          - { label: "Vanished",                      value: "vanished" }
+          - { label: "Wrongful Conviction",           value: "wrongful" }
       - { label: "Featured Image", name: "image", widget: "image", required: false, hint: "Photo of the person or case-related image" }
       - { label: "Photo Credit", name: "photo_credit", widget: "string", required: false, hint: "e.g. FBI, Cleveland Police Department, Public Domain - REQUIRED if uploading image" }
       - { label: "Image Caption", name: "image_caption", widget: "string", required: false, hint: "e.g. 'Last seen March 24, 2013' or context about the photo" }
@@ -57,6 +59,8 @@ collections:
           - { label: "Pattern Case",                  value: "pattern" }
           - { label: "Deep Dive",                     value: "deep" }
           - { label: "The Lie — Deception & Cover-Up", value: "thelie" }
+          - { label: "Vanished",                      value: "vanished" }
+          - { label: "Wrongful Conviction",           value: "wrongful" }
       - { label: "Description (paragraph 1)", name: "desc1", widget: "text" }
       - { label: "Description (paragraph 2)", name: "desc2", widget: "text", required: false }
       - { label: "Callout Label", name: "callout_label", widget: "string", hint: "e.g. Where the System Failed" }
