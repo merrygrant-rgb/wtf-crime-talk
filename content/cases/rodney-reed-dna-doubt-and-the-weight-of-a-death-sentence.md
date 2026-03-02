@@ -27,7 +27,7 @@ period: "1996"
 
 <!--StartFragment-->
 
-##  The Crime
+## The Crime
 
 In April 1996, 19-year-old Stacey Stites was reported missing after failing to arrive at work in Bastrop County, Texas. Days later, her body was discovered along a rural roadway. She had been strangled with a belt.
 
@@ -152,11 +152,12 @@ They are systemic questions about capital punishment and post-conviction review.
 
 A jury reached a verdict in 1998.
 
-Decades later, motions, affidavits, and forensic reinterpretations continue to test that verdict’s endurance.
+Decades later, motions, affidavits, and evolving forensic analysis continue to test that verdict’s durability.
 
-Some convictions conclude a case.\
+Some convictions close a file.\
 Others remain under sustained scrutiny.
 
-When a sentence is irreversible, the margin for doubt narrows — but the demand for certainty intensifies.
+In capital cases, the sentence is irreversible.\
+The standard for certainty should be immovable.
 
-<!--EndFragment-->
+<!--EndFragment-->s.
