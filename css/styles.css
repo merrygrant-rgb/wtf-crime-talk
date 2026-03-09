@@ -424,6 +424,7 @@ nav {
   overflow-x: auto;
   scrollbar-width: none;
   flex-wrap: nowrap;
+  justify-content: space-between;
 }
 .tabs::-webkit-scrollbar { display: none; }
 .tab {
