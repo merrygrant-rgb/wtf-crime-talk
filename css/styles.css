@@ -428,7 +428,7 @@ nav {
 .tabs::-webkit-scrollbar { display: none; }
 .tab {
   font-family: var(--sans);
-  font-size: .58rem;
+  font-size: .62rem;
   font-weight: 500;
   letter-spacing: .08em;
   text-transform: uppercase;
@@ -436,7 +436,7 @@ nav {
   background: none;
   border: none;
   border-bottom: 2px solid transparent;
-  padding: .85rem .7rem;
+  padding: .85rem .85rem;
   cursor: pointer;
   transition: all .2s;
   white-space: nowrap;
